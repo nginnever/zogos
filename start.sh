@@ -2,7 +2,7 @@
 
 clear
 
-cat zcashascii.txt
+cat /home/voxelot/Desktop/zcashascii.txt
 
 # Example taking input to conf
 
@@ -43,9 +43,16 @@ echo -e "devices: $gpus\n" >&2
 echo "initializing..."
 sleep 5
 echo -e "increasing fan speed...\n"
-~/github/amdgpu-pro-fans/./amdgpu-pro-fans.sh --speed=75
+echo "$PASSWORD" | sudo -S ~/github/amdgpu-pro-fans/./amdgpu-pro-fans.sh --speed=75
 echo ""
 echo "booting gpu failover script..."
 sleep 3
+
+#TODO add this to bash.rc
+GPU_MAX_HEAP_SIZE=100
+GPU_MAX_ALLOC_PERCENT=99
+GPU_SINGLE_ALLOC_PERCENT=100
 echo "starting miner..."
-#~/github/test/silentarmy/./silentarmy --instances=3 --use $gpus -c stratum+tcp://$pool -u $address.euclid
+#echo "$PASSWORD" | sudo -S ~/github/test/silentarmy/./silentarmy --instances=$instances --use $gpus -c stratum+tcp://$pool -u $address.euclid
+$GOPATH/bin/sa-monitor t1d1DQciS8AqViH1GqmPhTrky3qLY3ySbrG 0,1,2,3,4 euclid
+#sudo bash -c "echo $GOPATH/bin/sa-monitor t1d1DQciS8AqViH1GqmPhTrky3qLY3ySbrG 0,1,2,3,4 euclid"
