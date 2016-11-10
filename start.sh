@@ -27,7 +27,7 @@ cat /home/voxelot/Desktop/zcashascii.txt
 # do
 # 	echo -e "$line"
 # done <"$input"
-source test.conf
+source /home/voxelot/Desktop/test.conf
 
 #echo "reading conf..." >&2
 echo "miner: $miner" >&2
